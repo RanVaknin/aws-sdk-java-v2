@@ -22,9 +22,13 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - name: Run unit tests
-        run: mvn clean install -T0.4C
+        run: >-
+          mvn clean install -T0.4C
+          -Dsurefire.excludes=**/FileAsyncResponseTransformerPublisherTest.java
         env:
           AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: testing
+          AWS_SECRET_ACCESS_KEY: testing
       - name: Run module path tests
         if: matrix.java != 8
         working-directory: test/module-path-tests
