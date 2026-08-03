@@ -33,5 +33,8 @@ import software.amazon.awssdk.utils.Pair;
 @FunctionalInterface
 @SdkInternalApi
 public interface ChunkExtensionProvider extends Resettable {
+    /**
+     * The provided buffer is only valid for the duration of this invocation and must not be retained.
+     */
     Pair<byte[], byte[]> get(ByteBuffer chunk);
 }

@@ -28,5 +28,8 @@ import software.amazon.awssdk.annotations.SdkInternalApi;
 @FunctionalInterface
 @SdkInternalApi
 public interface ChunkHeaderProvider extends Resettable {
+    /**
+     * The provided buffer is only valid for the duration of this invocation and must not be retained.
+     */
     byte[] get(ByteBuffer chunk);
 }
